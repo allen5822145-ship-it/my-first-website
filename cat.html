@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -42,7 +42,6 @@
         margin-bottom: 10px;
     }
 
-    /* 主雙欄外包裝 */
     .main-container {
         display: flex;
         flex-direction: row;        /* 電腦版：左右並排 */
@@ -52,9 +51,10 @@
         width: 90%;
         max-width: 900px;           /* 限制最大寬度 */
         margin: 20px auto;
+		
     }
 
-    /* 左側 Google 地圖容器 */
+
     .map-card {
         background: white;
         padding: 20px;
@@ -80,7 +80,6 @@
         font-size: 1.1rem;
     }
 
-    /* 右側主卡片區塊 */
     .card {
         background: white;
         padding: 30px;
@@ -92,7 +91,7 @@
         box-sizing: border-box;
     }
 
-    /* 圖片設定 */
+
     .cat-img {
         width: 100%;
         height: 250px;
@@ -216,7 +215,7 @@
         color: #ffb6c1;
     }
 
-    /* 📱 手機版響應式設計（統一放最底部，避免被上方樣式覆蓋） */
+
     @media (max-width: 768px) {
         body {
             background-position: center top;
@@ -245,7 +244,20 @@
 
     
     <div class="main-container">
-        
+        <!-- 財神降臨：發票對獎卡片 -->
+        <div class="card invoice-card">
+            <div class="map-title">🧾 最近一期統一發票</div>
+            <div style="text-align: left; margin-top: 15px;">
+                <p style="margin: 8px 0;"><strong>🌟 特別獎：</strong><span style="color: #d17a3a; font-weight: bold;">{{ super_prize }}</span></p>
+                <p style="margin: 8px 0;"><strong>✨ 特獎：</strong><span style="color: #d17a3a; font-weight: bold;">{{ special_prize }}</span></p>
+                <p style="margin: 8px 0;"><strong>🎁 頭獎：</strong></p>
+                <div style="background: #fff8f0; padding: 10px; border-radius: 10px; font-size: 0.9rem; line-height: 1.6;">
+                    {% for p in first_prizes %}
+                        <div style="letter-spacing: 1px;">{{ p }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         <div class="map-card">
             <div class="map-title">📍 抓貓秘密基地</div>
             
