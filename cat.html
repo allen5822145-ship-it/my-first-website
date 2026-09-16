@@ -1,10 +1,9 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>貓咪宇宙第一可愛！</title>
-    
     
    <style>
     /* 全域設定 */
@@ -30,6 +29,25 @@
         cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' style='font-size:32px;'><text y='32'>🍖</text></svg>") 16 16, pointer !important;
     }
 
+    /* 📌 新增：讓時鐘固定在右上角的樣式 */
+    .top-right-clock {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 999; /* 確保時鐘浮在最上層，不會被其他東西蓋住 */
+    }
+
+    .mysize {
+        font-size: 18px; /* 稍微調小一點點比較適合放在角落，你也可以改回 36px */
+        background-color: #fff8f0;
+        color: #d17a3a;
+        border: 2px solid #e58e4f;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px;
+    }
+
     /* 標題區塊 */
     header {
         text-align: center;
@@ -51,9 +69,7 @@
         width: 90%;
         max-width: 900px;           /* 限制最大寬度 */
         margin: 20px auto;
-		
     }
-
 
     .map-card {
         background: white;
@@ -90,7 +106,6 @@
         max-width: 400px;
         box-sizing: border-box;
     }
-
 
     .cat-img {
         width: 100%;
@@ -215,7 +230,6 @@
         color: #ffb6c1;
     }
 
-
     @media (max-width: 768px) {
         body {
             background-position: center top;
@@ -231,10 +245,37 @@
             width: 100%;
         }
     }
-</style>
-    <link rel='stylesheet' type='text/css' href='mystyle.css'>
+    </style>
+
+    <!-- 數字時鐘的 JavaScript 函數 -->
+    <script>
+      function show() {
+          let digital = new Date();
+          let hours = digital.getHours();
+          let minutes = digital.getMinutes();
+          let seconds = digital.getSeconds();
+
+          if (minutes <= 9) {
+              minutes = "0" + minutes;
+          }
+          
+          if (seconds <= 9) {
+              seconds = "0" + seconds;
+          }
+          // 寫入文字方塊
+          document.tick.clock.value = hours + ":" + minutes + ":" + seconds;
+      }
+    </script>
 </head>
-<body>
+
+<body onload="setInterval('show()', 1000)">
+
+    <!-- 📌 右上角的時鐘區塊 -->
+    <div class="top-right-clock">
+        <form name="tick">
+            <input type="text" size="7" name="clock" class="mysize">
+        </form>
+    </div>
 
     <header>
         <h1>🐾 貓咪宇宙第一可愛 🐾</h1>
@@ -242,7 +283,6 @@
         <p>世界上沒有什麼事是吸一口貓解決不了的，如果有，就吸兩口。</p>
     </header>
 
-    
     <div class="main-container">
         <!-- 財神降臨：發票對獎卡片 -->
         <div class="card invoice-card">
@@ -258,9 +298,9 @@
                 </div>
             </div>
         </div>
+
         <div class="map-card">
             <div class="map-title">📍 抓貓秘密基地</div>
-            
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.239276495147!2d120.96568207590899!3d24.804354347481878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346835c2f30bd877%3A0x64e26219df0e318!2z5paw56u55biC5pS_5pS_!5e0!3m2!1szh-TW!2stw!4v1710000000000!5m2!1szh-TW!2stw" 
                 style="border:0;" 
@@ -269,7 +309,6 @@
             </iframe>
         </div>
 
-       
         <div class="card">
             <div class="toy-container">
                 <div class="toy-cat">
@@ -302,10 +341,9 @@
                 <div>奴才今天已經瘋狂擼貓 <span id="pet-number" style="font-weight: bold; color: #8fb86e;">0</span> 次</div>
             </div>
         </div>
-
     </div>
 
-    <!-- JavaScript 區域 -->
+    <!-- 貓咪互動與追蹤游標的 JavaScript -->
     <script>
         let feedCount = 0;
         let petCount = 0;
@@ -341,7 +379,6 @@
             }
         }
 
-        
         const pupils = document.querySelectorAll('.pupil');
         window.addEventListener('mousemove', (e) => {
             pupils.forEach((pupil) => {
@@ -359,6 +396,5 @@
             });
         });
     </script>
-
 </body>
 </html>
