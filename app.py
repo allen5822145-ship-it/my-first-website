@@ -30,7 +30,7 @@ def get_invoice_data():
 @app.route('/')
 def index():
     s1, s2, f_list = get_invoice_data()
-    return render_template('index.html', super_prize=s1, special_prize=s2, first_prizes=f_list)
+    return render_template('cat.html', super_prize=s1, special_prize=s2, first_prizes=f_list)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5001, debug=False)
